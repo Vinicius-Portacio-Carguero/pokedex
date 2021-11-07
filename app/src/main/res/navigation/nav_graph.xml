@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/pokeHomeFragment">
+
+    <fragment
+        android:id="@+id/landingBottomSheet"
+        android:name="com.example.pokedex.feature.landing.view.LandingBottomSheet"
+
+        />
+
+    <fragment
+        android:id="@+id/pokeHomeFragment"
+        android:name="com.example.pokedex.feature.pokeHome.view.PokehomeFragment"
+        android:label="PokehomeFragment"
+        tools:layout="@layout/pokehome_fragment"
+
+        />
+
+</navigation>
