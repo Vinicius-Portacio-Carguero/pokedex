@@ -46,4 +46,4 @@ por causa do ônus de build e verbosidade gerado pelo dagger
 
 * Validaação de firstOpen (LandingBottomSheet só deve aparecer para quem abre o app pela primeira vez)
 
-
+* Pipeline de CI/CD com Firebase e a Lib wzieba/Firebase-Distribution-Github-Action@v1.2.1
