@@ -1,4 +1,4 @@
-package net.nuvem.mobile.carguero.presentation.view
+package com.example.pokedex.utils
 
 import android.app.Dialog
 import android.content.res.Resources

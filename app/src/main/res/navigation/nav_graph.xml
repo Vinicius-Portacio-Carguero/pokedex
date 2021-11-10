@@ -9,6 +9,7 @@
         android:id="@+id/landingBottomSheet"
         android:name="com.example.pokedex.feature.landing.view.LandingBottomSheet"
 
+        tools:layout="@layout/landing_bottomsheet"
         />
 
     <fragment
