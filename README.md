@@ -2,42 +2,48 @@
 
 #### Nesse repositório, decidi abrigar uma abordagem peculiar ao tão conhecido mvvm.
 
-O projeto consiste em uma simples pokedéx, onde fazemos buscas por fotos de pokémons, e também, conseguimos listar-os.
+O projeto consiste em uma pokedéx, onde fazemos buscas por fotos de pokémons, e também, conseguimos listar-os.
 
 Para conseguirmos entender melhor a partir de agora, vamos ter a premissa que temos em mente um ponto principal ao pensar nessa aplicação.
 
 * 1 - Ela precisa escalar 
 
-Isso quer dizer que todas as práticas adotadas nesse projeto são altamente escaláveis ? ( Infelizmente não rsrs.)
-
 ## Arquitetura 
 
-Quando pensamos em mvvm, um diagrama logo nos vem a cabeça onde : View < - > ViewModel < - Model | é o caminho mais fácil/comum. Mas, desde a
-primeira vez que tive contato com o mesmo, contrariado fiquei por questionar constantemente a negativa influência na produtividade que várias
-classes de contextos diferentes em camadas iguais fariam.
+Quando pensamos em MVVM, um diagrama logo nos vem a cabeça onde : View < - > ViewModel < - Model | é o caminho mais fácil/comum.
 
-Com esse ímpeto, depois de muitas pesquisas em fórums, consegui me deparar com um modelo claro onde o mvvm poderia escalar em um contexto 
-modularizado, dividindo a aplicação em duas camadas principais, sendo, 'Feature' e 'Plugin'
+Nessa abordagem, entretanto, pensamos no mesmo fluxo dividido em duas camadas | Feature e Plugin
 
-Quando pensamos em Feature :
-* nova feature, nova task, nova implementação, jira, trello ... ? e por aí vai
+Onde: 
 
-Quando pensamos em Plugin :
-* Plugar a aplicação ? Plug de dados ? ....
+* Feature -> Views e ViewsModel
+* Plugin -> Plug que te conecta ao backend | model
 
-Mas o que realmente queremos abordar aqui é: 
+`Dado uma funcionalidade ela fica embarcada no seu próprio contexto, conectado a um plugin correspondente e aos utilitários convenientes`
 
-## Dado uma funcionalidade, ela fica isolada em seu próprio contexto, respeitando sua posição no fluxo da arquitetura mvvm.
-
-##### Vejamos : 
+#### Vejamos : 
 ![alt text](https://docs.google.com/uc?export=download&id=1JLO7W7wgKRPD2-gywmLs-3vi9ByaGgRS)
 
-A imagem exemplifica a afirmação acima, e percebemos isso quando vemos views e viewsModels dentro da camada de feature.
+A imagem exemplifica a afirmação acima, e percebemos isso quando vemos views e viewsModels dentro da camada de feature e repository e services 
+na camada de plugin e a conexão entre as duas é feito via injeção de dependência
 
-Mas, e o resto da aplicação não seria uma feature também ? 
+#### Escalando, percebemos que: 
+![alt text](https://docs.google.com/uc?export=download&id=1_RLcYOinlPsXKV5ptiR358u-wQ2pfYTd)
 
-A resposta é NÃO e eu vou explicar.
+# Entendendo melhor a aplicação
 
-* Quando pegamos o nosso liquidificador para fazer o que quer que seja, precisamos `plugá-lo` na tomada, não é mesmo ?
+Como já mencionado, aqui falamos sobre uma pokédex. Onde, dado o nome de um pokémon, buscamos via http request a url de uma imagem, e retornamos via
+`observe` para a camada de view, onde mostramos ao usuário.
 
-Com essa pequena anedota eu digo : 
+# Pontos incompletos : 
+
+* Injeção de dependência | Pensando no fluxo simples da aplicação e necessidade de escalabilidade pode ser necessário avaliar outra lib de DI (como Koin, ou Hilt)
+por causa do ônus de build e verbosidade gerado pelo dagger
+
+* Testes unitários
+
+* Feature/pokeList
+
+* Validaação de firstOpen (LandingBottomSheet só deve aparecer para quem abre o app pela primeira vez)
+
+
